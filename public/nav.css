@@ -1,0 +1,44 @@
+#menu {
+  font-size: 24px;
+  padding-top: 3px;
+  padding-bottom: 30px;
+  margin: 20px 0px;
+  height: 40px;
+  float: left;
+  background-color: #2196F3;
+}
+#menuBar {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  float: left;
+  /* position:fixed; */
+  /* background-color: rgba(48, 66, 70, .8); */
+  width: 0px;
+  transition: width 0.5s;
+  height: 100%;
+  overflow-x: hidden;
+  background-image: url('https://www.greatestphysiques.com/wp-content/uploads/2018/02/Blue-background-bicep-curl.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.menuLink {
+  font-size: 24px;
+  width: 100%;
+  height: 75px;
+  padding: 20px 0px;
+  margin: 0px;
+}
+.menuLink:hover {
+  background-color: rgba(2, 16, 20, 1);
+}
+.menuLink a:hover {
+  text-decoration: none;
+}
+.menuLink a{
+  color: whitesmoke;
+}
+.profile-container {
+  transition: margin 0.5s;
+}

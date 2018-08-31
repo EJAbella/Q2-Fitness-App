@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/materia/bootstrap.min.css" rel="stylesheet" integrity="sha384-5bFGNjwF8onKXzNbIcKR8ABhxicw+SC1sjTh6vhSbIbtVgUuVTm2qBZ4AaHc7Xr9" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/nav.css">
+    <style media="screen">
+    nav {
+      overflow-y: hidden;
+      padding-right: 100px;
+    }
+    img {
+      height: 130px;
+    }
+    #menuBar {
+      height: 100vh;
+    }
+    .profile-container {
+      padding: 40px;
+    }
+    h1 {
+      padding-left: 20px;
+    }
+    #dayHeader {
+      padding-left: 20px;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    #exerciseBtn {
+      margin: 20px 0px;
+      margin-left: 20px;
+    }
+    .exercise-card {
+      text-align: left;
+      display: inline-block;
+      height: 230px;
+      max-height: auto;
+      overflow-y: auto;
+      margin-left: 10px;
+      padding: 20px;
+      border-radius: 25px;
+      background-color: whitesmoke;
+    }
+    .card-container {
+      height: 250px;
+      text-align: left;
+      border: 1px solid black;
+      width: 90%;
+      padding: 5px;
+      margin: 20px 0px;
+      border-radius: 25px;
+      background-color: whitesmoke;
+      box-shadow: 1px 2px 2px rgb(213, 213, 213);
+    }
+    .btn-container {
+      text-align: center;
+    }
+    .workout {
+      margin: 20px 10px;
+    }
+    .allExercises-content {
+      border-radius: 20px;
+    }
+    .complete {
+      font-size: 16px;
+      float: right;
+    }
+    .complete:hover {
+      cursor: pointer;
+      color: rgb(55, 224, 34);
+    }
+    .img-container {
+      display: inline-block;
+    }
+    .card-holder {
+      display: inline-block;
+    }
+    p {
+      display: inline-block;
+    }
+    .workout-img {
+      display: inline-block;
+      max-width: 200px;
+      max-height: 250px;
+      margin: 30px;
+      border-radius: 5px;
+    }
+    .workout-img img {
+      border: 1px solid black;
+      width: 100%;
+      height: 100%;
+    }
+    /* .workout-holder {
+      height: 250px;
+      max-height: auto;
+      width: 90%;
+      margin: 0px;
+    } */
+
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button type="button" class="btn btn-success" style="font-family:arial" id="menu">&equiv;</button>
+      <img style="float:right" src="http://kravegym.com/krave/wp-content/uploads/2016/05/FYP-Krave-Fitness-Gym-Slogan.png" alt="">
+
+    </nav>
+    <div class="" id='menuBar'>
+      <div class="menuLink">
+        <a href="/userHome">Home</a><br>
+      </div>
+      <div class="menuLink">
+      <a href="/userHome/macros">Macros</a><br>
+      </div>
+      <div class="menuLink">
+      <a href="/userHome/profile">Profile</a>
+      </div>
+      <div class="menuLink">
+        <a href="/userHome/logout">Logout</a>
+      </div>
+    </div>
+
+  <div class="profile-container">
+
+    <% let day = {1:'Monday', 2:'Tuesday', 3:'Wednesday', 4:'Thursday', 5:'Friday', 6:'Saturday', 7:'Sunday'} %>
+    <h1><b><%= day[weekday] %></h1>
+
+    <h2 id='dayHeader'>{Chest Day}</h2>
+
+    <button class="btn btn-primary" type="button" id="exerciseBtn">Add More Exercises</button>
+
+    <div id="allExercises" class="modal">
+      <div class="allExercises-content">
+        <span class="close">&times;</span>
+        <div class="btn-container">
+          <button class="btn btn-outline-primary" type="button" id='abs'>ABS</button>
+          <button class="btn btn-outline-primary" type="button" id="arms">ARMS</button>
+          <button class="btn btn-outline-primary" type="button" id="back">BACK</button>
+          <button class="btn btn-outline-primary" type="button" id="calves">CALVES</button>
+          <button class="btn btn-outline-primary" type="button" id="chest">CHEST</button>
+          <button class="btn btn-outline-primary" type="button" id="legs">LEGS</button>
+          <button class="btn btn-outline-primary" type="button" id="shoulders">SHOULDERS</button>
+        </div>
+        <hr>
+        <div class="workouts">
+        <% for(let i=0; i<workouts.length; i++) {
+        if (workouts[i].bodyPart == 1) { %>
+          <div class="workout chest">
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %><br>
+          </div>
+        <% } else if (workouts[i].bodyPart == 2) { %>
+          <div class="workout back" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <%} else if (workouts[i].bodyPart == 3) { %>
+          <div class="workout legs" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <% } else if (workouts[i].bodyPart == 4) { %>
+          <div class="workout calves" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <% } else if (workouts[i].bodyPart == 5) { %>
+          <div class="workout arms" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <% } else if (workouts[i].bodyPart == 6) { %>
+          <div class="workout shoulders" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <% } else if (workouts[i].bodyPart == 7) { %>
+          <div class="workout abs" style='display: none'>
+            <span><a class="add" href="/add/<%= weekday %>/<%= workouts[i].id %>">+</a></span>
+            <h2><%= workouts[i].workout %></h2>
+            <%- workouts[i].desc %>
+          </div>
+        <% } %>
+        <% } %>
+        </div>
+      </div>
+    </div>
+
+    <% for(let i=0; i<userWorkout.length; i++) { %>
+    <!-- <div class="workout-holder row"> -->
+    <div class="card-container row">
+      <div class="exercise-card col-9">
+        <span><a class="close" href="/remove/<%= weekday %>/<%= userWorkout[i].workoutID %>">&times;</a></span>
+        <h3><%= userWorkout[i].workout %></h3>
+        <p><%- userWorkout[i].desc %></p>
+        <a href="/complete/<%= weekday %>" class='complete'><i class="fas fa-dumbbell"></i></a>
+      </div>
+    <div class="workout-img col-3">
+
+      <div class="">
+        <img src="<%= userWorkout[i].imgURL %>" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+    <% } %>
+
+  </div>
+    <script type="text/javascript">
+    const dayHeader = document.querySelector('#dayHeader')
+    const menu = document.querySelector('#menu')
+    const menuBar = document.querySelector('#menuBar')
+    const profileCont = document.querySelector('.profile-container')
+    const modalAlert = document.querySelector('.alert-dismissible')
+
+        var barbellIcon = document.querySelectorAll('.fa-dumbbell')
+        // var barbellModal = document.querySelectorAll('.modal')
+        // const close = document.querySelectorAll('.close')
+
+
+          for(let i=0; i < barbellIcon.length; i++) {
+            barbellIcon[i].onclick = (e) => {
+              console.log('test')
+              alert("Great job completing your workout! You've been awarded points!")
+            }
+          }
+
+    window.onclick = (e) => {
+      if(e.target !== menuBar && e.target !== menu) {
+        menuBar.style.width = "0px";
+        profileCont.style.marginLeft = '0px'
+      }
+    }
+
+    menu.onclick = () => {
+      menuBar.style.width = '200px';
+      profileCont.style.marginLeft = '200px'
+    }
+    dayHeader.innerHTML = localStorage.getItem('title[<%= weekday - 1 %>]')
+    </script>
+  <script src="/script.js" charset="utf-8"></script>
+
+  </script>
+  </body>
+</html>
