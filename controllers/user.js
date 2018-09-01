@@ -30,7 +30,9 @@ module.exports = {
   userHome: function (req, res) {
     knex('user').where('id', req.session.user_id).then((result) => {
       return knex('user').orderBy('points', 'desc').then((allUsers) => {
-        res.render('userHome', {user:result[0], allUsers:allUsers})
+        let region = process.env.aws_region;
+        let key = process.env.aws_key;
+        res.render('userHome', {user:result[0], allUsers:allUsers, region, key})
       })
     })
   },

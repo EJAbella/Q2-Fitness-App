@@ -314,9 +314,9 @@
     // CHAT LOGIC
 		document.getElementById("wisdom").focus();
 
-		AWS.config.region = ''; // Region
+		AWS.config.region = "<%= region %>"; // Region
 		AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-			IdentityPoolId: '', // Credentials
+			IdentityPoolId: "<%= key %>", // Credentials
 		});
 
 		var lexruntime = new AWS.LexRuntime();
